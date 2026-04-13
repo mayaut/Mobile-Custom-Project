@@ -8,13 +8,13 @@
     tools:context=".HomeFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="400dp"
+        android:layout_height="150dp"
         android:gravity="center_horizontal"
         android:text="Welcome to your study app!"
         android:textSize="45dp"
         android:textColor="@color/orange"
-        />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:layout_width="500dp"
@@ -31,7 +31,7 @@
 
     <TextView
         android:layout_width="380dp"
-        android:layout_height="300dp"
+        android:layout_height="230dp"
         android:text="1. add flashcards to study\n2. set your alarm\n3. your alarm only turns off if you answer\nyour flashcard question correctly!\n4. be the greatest student ever\n and seize the day!"
         android:textColor="#111111"
         android:textSize="25dp"
