@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="large_length">150dp</dimen>
+    <dimen name="small_length">75dp</dimen>
+    <dimen name="med_length">110dp</dimen>
+    <dimen name="margin_top">5dp</dimen>
+    <dimen name="MATCH_CONSTRAINT">0dp</dimen>
+</resources>
