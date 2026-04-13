@@ -3,13 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/light_blue"
     tools:context=".FlashcardsFragment">
 
     <TextView
+        android:layout_width="400dp"
+        android:layout_height="125dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:textSize="35dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.0"
+        android:textColor="@color/orange"
+        android:text="Flashcards" />
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:gravity="center"
-        android:text="@string/flashcards_title" />
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:hint="Question" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
