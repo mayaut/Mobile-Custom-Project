@@ -21,16 +21,190 @@
         android:textColor="@color/orange"
         android:text="Flashcards" />
 
-    <EditText
+    <TextView
+        android:id="@+id/flashcard_question"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
+        android:textColor="@color/dark_blue"
+        android:gravity="center"
+        android:text="What color is the sky?"
+        android:textSize="30sp"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/flashcard_answer"
+        android:visibility="invisible"
+        android:textColor="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:text="Blue"
+        android:textSize="40sp"
+        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/answer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:text="Orange"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:background="#FF9800"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_below="@id/flashcard_question"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/answer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:text="Blue"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:background="#FF9800"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_below="@id/answer1"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/answer3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:text="Rainbow"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:background="#FF9800"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintVertical_bias="0.60"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_below="@id/answer2"
+        />
+
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/answer3"
+        android:layout_alignParentEnd="true"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:id="@+id/next_card"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintHorizontal_bias="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:gravity="center"
-        android:textSize="15dp"
-        android:textColor="@color/black"
-        android:hint="Question" />
+        android:src="@drawable/next_icon"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/answer3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:id="@+id/delete_card"
+        app:layout_constraintVertical_bias="0.90"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/trash_icon"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/answer3"
+        android:layout_alignParentLeft="true"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/prev_card"
+        android:src="@drawable/back_icon"/>
+
+    <ImageView
+        android:id="@+id/reset"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_refresh"
+        app:layout_constraintVertical_bias="0.76"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/toggle_choices_visibility"
+        android:src="@drawable/ic_eye"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/add_card"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_add"
+        app:layout_constraintVertical_bias="0.77"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/edit_card"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/ic_edit"
+        app:layout_constraintVertical_bias="0.76"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
