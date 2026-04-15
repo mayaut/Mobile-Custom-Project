@@ -6,4 +6,5 @@
     <color name="light_blue">#E7E0ECF8</color>
     <color name="orange">#F6833F</color>
     <color name="dark_blue">#50709D</color>
+    <color name="reset_color">#FF9800</color>
 </resources>

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 setCurrentFragment(homeFragment);
             } else if (itemId == R.id.nav_alarm) {
                 setCurrentFragment(alarmFragment);
-            } else if (itemId == R.id.nav_flashcards) {
+            } else {
                 setCurrentFragment(flashcardsFragment);
             }
             return true;
