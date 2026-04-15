@@ -9,10 +9,7 @@ public class FlashcardDatabase {
 
     FlashcardDatabase(Context context) {
         database = Room.databaseBuilder(context.getApplicationContext(),
-                        AppDatabase.class, "flashcard-database")
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build();
+                        AppDatabase.class, "flashcard-database").allowMainThreadQueries().build();
     }
     public void initFirstCard() {
         if (database.flashcardDao().getAll().isEmpty()) {

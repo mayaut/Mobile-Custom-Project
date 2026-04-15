@@ -1,6 +1,8 @@
 package com.mayaut.myproject;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 public class AddCard extends AppCompatActivity {
     public static final String QUESTION_KEY = "question_key";
     public static final String ANSWER_KEY = "answer_key";
@@ -16,8 +19,6 @@ public class AddCard extends AppCompatActivity {
 
     ImageView cancelButton, saveButton;
     EditText questionField, answerField, wrongAnswerField1, wrongAnswerField2;
-    String questionString, answerString, wrongAnswer1String, wrongAnswer2String;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,47 +28,55 @@ public class AddCard extends AppCompatActivity {
         cancelButton = findViewById(R.id.cancel_make);
         saveButton = findViewById(R.id.save_button);
 
-       questionField = findViewById(R.id.editQuestion);
-       answerField = findViewById(R.id.editAnswer);
-
-       wrongAnswerField1 = findViewById(R.id.editIncorrectAnswer1);
+        questionField = findViewById(R.id.editQuestion);
+        answerField = findViewById(R.id.editAnswer);
+        wrongAnswerField1 = findViewById(R.id.editIncorrectAnswer1);
         wrongAnswerField2 = findViewById(R.id.editIncorrectAnswer2);
 
-        questionString = getIntent().getStringExtra(QUESTION_KEY);
-         answerString = getIntent().getStringExtra(ANSWER_KEY);
-        wrongAnswer1String = getIntent().getStringExtra(WRONG_ANSWER1_KEY);
-        wrongAnswer2String = getIntent().getStringExtra(WRONG_ANSWER2_KEY);
+        Intent intent = getIntent();
+        String questionString = intent.getStringExtra(QUESTION_KEY);
+        String answerString = intent.getStringExtra(ANSWER_KEY);
+        String wrong1String = intent.getStringExtra(WRONG_ANSWER1_KEY);
+        String wrong2String = intent.getStringExtra(WRONG_ANSWER2_KEY);
+
+        if (questionString != null) {
+            questionField.setText(questionString);
+        }
+        if (answerString != null) {
+            answerField.setText(answerString);
+        }
+        if (wrong1String != null) {
+            wrongAnswerField1.setText(wrong1String);
+        }
+        if (wrong2String != null) {
+            wrongAnswerField2.setText(wrong2String);
+        }
 
         cancelButton.setOnClickListener(view -> {
-            finish(); });
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent data = new Intent();
-                String inputQuestion = ((EditText) findViewById(R.id.editQuestion)).getText().toString();
-                String thirdAnswer = ((EditText) findViewById(R.id.editAnswer)).getText().toString();
-                String firstAnswer = ((EditText) findViewById(R.id.editIncorrectAnswer1)).getText().toString();
-                String secondAnswer = ((EditText) findViewById(R.id.editIncorrectAnswer2)).getText().toString();
-
-                if (inputQuestion.equals("") || thirdAnswer.equals("")) {
-                    Toast.makeText(AddCard.this, "Please make sure you've filled out all required fields!", Toast.LENGTH_SHORT).show();
-                } else {
-                    data.putExtra(QUESTION_KEY, inputQuestion);
-                    data.putExtra(ANSWER_KEY, thirdAnswer);
-                    data.putExtra(WRONG_ANSWER1_KEY, firstAnswer);
-                    data.putExtra(WRONG_ANSWER2_KEY, secondAnswer);
-                    setResult(RESULT_OK, data);
-                    finish();
-                }
-            }
+            finish();
         });
 
-        if (questionString != null && answerString != null) {
-            questionField.setText(questionString);
-            answerField.setText(answerString);
-            wrongAnswerField1.setText(wrongAnswer1String);
-            wrongAnswerField2.setText(wrongAnswer2String);
-        }
+        saveButton.setOnClickListener(v -> {
+                String question = questionField.getText().toString().trim();
+                String answer = answerField.getText().toString().trim();
+                String wrong1 = wrongAnswerField1.getText().toString().trim();
+                String wrong2 = wrongAnswerField2.getText().toString().trim();
+
+            if (question.isEmpty() || answer.isEmpty()) {
+                Toast.makeText(this,
+                        "input your flashcard details pls!",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Intent data = new Intent();
+            data.putExtra(QUESTION_KEY, question);
+            data.putExtra(ANSWER_KEY, answer);
+            data.putExtra(WRONG_ANSWER1_KEY, wrong1);
+            data.putExtra(WRONG_ANSWER2_KEY, wrong2);
+
+            setResult(RESULT_OK, data);
+            finish();
+            });
     }
 }

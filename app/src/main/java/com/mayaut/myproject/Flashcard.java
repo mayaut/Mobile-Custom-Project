@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import java.util.UUID;
 
 @Entity
 public class Flashcard {
+    @Ignore
     Flashcard(@NonNull String question, @NonNull String answer) {
         this.uuid = UUID.randomUUID().toString();
         this.question = question;
