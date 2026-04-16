@@ -70,37 +70,29 @@ public class FlashcardsFragment extends Fragment {
         //next card
         nextButton.setOnClickListener(v -> {
             if (allFlashcards.size() > 0) {
-                cardIndex = (int)(Math.random() * allFlashcards.size());
+                cardIndex = (cardIndex + 1) % allFlashcards.size();
                 updateUI(cardIndex);
                 resetMultipleChoice();
-                revealQuestion();
             }
         });
 
         prevButton.setOnClickListener(v -> {
             if (allFlashcards.size() > 0) {
-                cardIndex = (int)(Math.random() * allFlashcards.size());
+                cardIndex = (cardIndex - 1 + allFlashcards.size()) % allFlashcards.size();
                 updateUI(cardIndex);
                 resetMultipleChoice();
-                revealQuestion();
             }
         });
 
         deleteButton.setOnClickListener(v -> {
-            String question = flashcardQuestion.getText().toString();
-            flashcardDatabase.deleteCard(question);
-            allFlashcards = flashcardDatabase.getAllCards();
-            if (allFlashcards.isEmpty()) {
-                flashcardQuestion.setText("hey add a flashcard buddy");
-                flashcardAnswer.setText("press the + to add one");
-                wrongAnswer1.setText("");
-                wrongAnswer2.setText("");
-                correctAnswer.setText("");
-                return;
+            if (!allFlashcards.isEmpty()) {
+                flashcardDatabase.deleteCard(flashcardQuestion.getText().toString());
+                allFlashcards = flashcardDatabase.getAllCards();
+                if (!allFlashcards.isEmpty()) {
+                    cardIndex = 0;
+                    updateUI(cardIndex);
+                }
             }
-            cardIndex = Math.max(0, cardIndex-1);
-            updateUI(cardIndex);
-            revealQuestion();
         });
 
         resetButton.setOnClickListener(v -> {
@@ -126,12 +118,29 @@ public class FlashcardsFragment extends Fragment {
         });
 
         addButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddCard.class);
             Toast.makeText(requireContext(), "hello!", Toast.LENGTH_SHORT).show();
         });
 
         editButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddCard.class);
             Toast.makeText(requireContext(), "im hungry", Toast.LENGTH_SHORT).show();
         });
+
+        correctAnswer.setOnClickListener(v -> {
+            correctAnswer.setBackgroundColor(getResources().getColor(R.color.green_color, null));
+        });
+
+        wrongAnswer1.setOnClickListener(v-> {
+            wrongAnswer1.setBackgroundColor(getResources().getColor(R.color.red_color, null));
+            correctAnswer.setBackgroundColor(getResources().getColor(R.color.green_color, null));
+        });
+
+        wrongAnswer2.setOnClickListener(v-> {
+            wrongAnswer2.setBackgroundColor(getResources().getColor(R.color.red_color, null));
+            correctAnswer.setBackgroundColor(getResources().getColor(R.color.green_color, null));
+        });
+
 
         return view;
     }
@@ -142,7 +151,14 @@ public class FlashcardsFragment extends Fragment {
     }
 
     private void updateUI(int index) {
-        if(allFlashcards == null || allFlashcards.isEmpty()) { return; }
+        if(allFlashcards == null || allFlashcards.isEmpty()) {
+                flashcardQuestion.setText("hey add a flashcard buddy");
+                flashcardAnswer.setText("press the + to add one");
+                wrongAnswer1.setText("");
+                wrongAnswer2.setText("");
+                correctAnswer.setText("");
+                return;
+        }
         Flashcard card = allFlashcards.get(index);
         flashcardQuestion.setText(card.getQuestion());
         flashcardAnswer.setText(card.getAnswer());
@@ -154,9 +170,9 @@ public class FlashcardsFragment extends Fragment {
         wrongAnswer1.setBackgroundColor(getResources().getColor(R.color.reset_color, null));
         wrongAnswer2.setBackgroundColor(getResources().getColor(R.color.reset_color, null));
         correctAnswer.setBackgroundColor(getResources().getColor(R.color.reset_color, null));
-
-        wrongAnswer1.setTextColor(getResources().getColor(R.color.black, null));
-        wrongAnswer2.setTextColor(getResources().getColor(R.color.black, null));
-        correctAnswer.setTextColor(getResources().getColor(R.color.black, null));
+//
+//        wrongAnswer1.setTextColor(getResources().getColor(R.color.black, null));
+//        wrongAnswer2.setTextColor(getResources().getColor(R.color.black, null));
+//        correctAnswer.setTextColor(getResources().getColor(R.color.black, null));
     }
 }
