@@ -33,6 +33,9 @@ public class FlashcardDatabase {
             }
         }
     }
+    public void deleteCard(Flashcard flashcard) {
+        database.flashcardDao().delete(flashcard);
+    }
     public void deleteAll() {
         for (Flashcard f : database.flashcardDao().getAll()) {
             database.flashcardDao().delete(f);
